@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+
+  --color-base-blue: #4EA8DE;
+  --color-base-blue-dark: #1E6F9F;
+  --color-base-purple: #8284FA;
+  --color-base-purple-dark: #5E60CE;
+  --color-base-danger: #E25858;
+  --color-base-gray-100: #F2F2F2;
+  --color-base-gray-200: #D9D9D9;
+  --color-base-gray-300: #808080;
+  --color-base-gray-400: #333333;
+  --color-base-gray-500: #262626;
+  --color-base-gray-600: #1A1A1A;
+  --color-base-gray-700: #0D0D0D;
+}
+
+html * {
+  font-family: "Inter", sans-serif;
+  font-size: 1.6rem;
+  line-height: 140%;
+  font-weight: 400;
+}
