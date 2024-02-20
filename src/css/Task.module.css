@@ -59,10 +59,13 @@
   display: flex;
   align-items: flex-start;
   justify-self: flex-start;
+
   font-size: 1.4rem;
   text-align: justify;
   color: var(--color-base-gray-100);
+
   cursor: pointer;
+  overflow: hidden;
 }
 
 .inputWrapper input:checked + label {
@@ -71,14 +74,14 @@
 }
 
 .trash {
-  width: 24px;
-  height: 24px;
+  width: 2.4rem;
+  height: 2.4rem;
   padding: 0.2rem;
 
   color: var(--color-base-gray-300);
-  cursor: pointer;
   border-radius: 8px;
 
+  cursor: pointer;
   transform: translateY(-15%);
   transition: all 0.2s;
 }
