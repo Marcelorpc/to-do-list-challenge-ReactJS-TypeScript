@@ -1,14 +1,16 @@
 .task {
-  width: 45rem;
   padding: 1.6rem;
   display: flex;
   align-items: flex-start;
+  justify-content: space-between;
   gap: 1.2rem;
+
   background-color: var(--color-base-gray-500);
   border-radius: 8px;
 }
 
 .inputWrapper {
+  width: 100%;
   position: relative;
   display: flex;
   align-items: flex-start;
@@ -16,7 +18,6 @@
 }
 
 .inputWrapper input {
-  position: absolute;
   width: 2.4rem;
   height: 2.4rem;
   top: 0;
@@ -27,13 +28,17 @@
 
 .inputWrapper label::before {
   content: '';
-  width: 3.2rem;
-  height: 2rem;
+  position: absolute;
+  width: 2.4rem;
+  height: 2.4rem;
+  top: 0;
+  left: 0;
 
   background-image: url(../assets/Checked=false-Hover=false.svg);
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: left;
 
+  transform: translateY(-15%);
   transition: all 0.2s;
 }
 
@@ -50,9 +55,10 @@
 }
 
 .inputWrapper label {
+  width: 100%;
   display: flex;
   align-items: flex-start;
-  gap: 1.2rem;
+  justify-self: flex-start;
   font-size: 1.4rem;
   text-align: justify;
   color: var(--color-base-gray-100);
@@ -65,13 +71,15 @@
 }
 
 .trash {
-  width: 4rem;
-  height: 2.5rem;
+  width: 24px;
+  height: 24px;
   padding: 0.2rem;
+
   color: var(--color-base-gray-300);
   cursor: pointer;
   border-radius: 8px;
 
+  transform: translateY(-15%);
   transition: all 0.2s;
 }
 
