@@ -26,4 +26,9 @@ html * {
   font-size: 1.6rem;
   line-height: 140%;
   font-weight: 400;
+  outline: none;
+}
+
+html *:focus {
+  border: 1px solid var(--color-base-purple-dark);
 }
