@@ -31,7 +31,7 @@ function App() {
         </div>
 
         <div className={styles.screenEmptyContent}>
-          <Clipboard />
+          <Clipboard size={56} className={styles.clipboard}/>
           <strong>Você ainda não tem tarefas cadastradas</strong>
           <p>Crie tarefas e organize seus itens a fazer</p>
         </div>
