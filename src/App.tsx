@@ -2,10 +2,15 @@ import styles from './css/App.module.css'
 
 import LogoImg from './assets/Logo.svg'
 import { PlusCircle, Clipboard } from 'phosphor-react'
-
-//import { Task } from './components/Task' 
+import { Task } from './components/Task'
+import { useState } from 'react'
 
 function App() {
+  const [tasks, setTasks] = useState([
+    'Integer urna interdum massa libero auctor neque turpis turpis semper.',
+    'Integer urna interdum massa libero auctor neque turpis turpis semper.Integer urna interdum massa libero auctor neque turpis turpis semper.Integer urna interdum massa libero auctor neque turpis turpis semper.Integer urna interdum massa libero auctor neque turpis turpis semper.Integer urna interdum massa libero auctor neque turpis turpis semper.Integer urna interdum massa libero auctor neque turpis turpis semper.Integer urna interdum massa libero auctor neque turpis turpis semper.Integer urna interdum massa libero auctor neque turpis turpis semper.Integer urna interdum massa libero auctor neque turpis turpis semper.Integer urna interdum massa libero auctor neque turpis turpis semper.Integer urna interdum massa libero auctor neque turpis turpis semper.Integer urna interdum massa libero auctor neque turpis turpis semper.'
+  ])
+
   return (
     <div className={styles.app}>
       <header>
@@ -34,6 +39,12 @@ function App() {
           <Clipboard size={56} className={styles.clipboard}/>
           <strong>Você ainda não tem tarefas cadastradas</strong>
           <p>Crie tarefas e organize seus itens a fazer</p>
+        </div>
+
+        <div className={styles.taskList}>
+          {tasks.map((task) => {
+            return <Task content={task} />
+          })}
         </div>
       </main>
     </div>
