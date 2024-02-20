@@ -1,0 +1,81 @@
+.task {
+  width: 45rem;
+  padding: 1.6rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  background-color: var(--color-base-gray-500);
+  border-radius: 8px;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+}
+
+.inputWrapper input {
+  position: absolute;
+  width: 2.4rem;
+  height: 2.4rem;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.inputWrapper label::before {
+  content: '';
+  width: 3.2rem;
+  height: 2rem;
+
+  background-image: url(../assets/Checked=false-Hover=false.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+
+  transition: all 0.2s;
+}
+
+.inputWrapper input:hover + label::before {
+  background-image: url(../assets/Checked=false-Hover=true.svg);
+}
+
+.inputWrapper input:checked + label::before {
+  background-image: url(../assets/Checked=true-Hover=false.svg);
+}
+
+.inputWrapper input:checked:hover + label::before {
+  background-image: url(../assets/Checked=true-Hover=true.svg);
+}
+
+.inputWrapper label {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  font-size: 1.4rem;
+  text-align: justify;
+  color: var(--color-base-gray-100);
+  cursor: pointer;
+}
+
+.inputWrapper input:checked + label {
+  color: var(--color-base-gray-300);
+  text-decoration: line-through;
+}
+
+.trash {
+  width: 4rem;
+  height: 2.5rem;
+  padding: 0.2rem;
+  color: var(--color-base-gray-300);
+  cursor: pointer;
+  border-radius: 8px;
+
+  transition: all 0.2s;
+}
+
+.trash:hover {
+  color: var(--color-base-danger);
+  background-color: var(--color-base-gray-300);
+}
