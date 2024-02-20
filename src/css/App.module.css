@@ -1,0 +1,68 @@
+.app {
+  min-height: 100vh;
+  background-color: var(--color-base-gray-600);
+}
+header {
+  position: relative;
+  height: 20rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-base-gray-700);
+}
+
+form {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  bottom: 0;
+  transform: translateY(50%);
+}
+
+form label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  z-index: -1;
+  overflow: hidden;
+}
+
+form input {
+  width: 63.8rem;
+  height: 5.4rem;
+  padding: 1.6rem;
+  color: var(--color-base-gray-100);
+  background-color: var(--color-base-gray-500);
+  border: none;
+  border-radius: 8px;
+}
+
+form input::placeholder {
+  color: var(--color-base-gray-300);
+}
+
+form button {
+  width: 9rem;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+
+  font-weight: 700;
+  color: var(--color-base-gray-100);
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-base-blue-dark);
+
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+form button:hover {
+  background-color: var(--color-base-blue);
+}
