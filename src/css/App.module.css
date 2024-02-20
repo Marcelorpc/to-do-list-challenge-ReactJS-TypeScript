@@ -69,8 +69,10 @@ form button:hover {
 }
 
 main {
-  display: grid;
-  place-content: center;
+  height: 35rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .taskListHeader {
@@ -106,9 +108,23 @@ main {
   color: var(--color-base-gray-300);
   border-top: 1px solid var(--color-base-gray-300);
   border-radius: 8px;
+
+  display: none;
 }
 
 .clipboard {
   margin-bottom: 2.4rem;
   color: var(--color-base-gray-300);
+}
+
+.taskList {
+  width: 73.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  overflow-y: scroll;
+}
+
+.taskList::-webkit-scrollbar {
+  display: none;
 }
