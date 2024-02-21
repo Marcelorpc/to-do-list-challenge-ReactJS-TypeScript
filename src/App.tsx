@@ -3,7 +3,7 @@ import styles from './css/App.module.css'
 import LogoImg from './assets/Logo.svg'
 import { PlusCircle, Clipboard } from 'phosphor-react'
 import { Task } from './components/Task'
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react'
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -14,12 +14,33 @@ function App() {
 
   function inputOnChange(event: ChangeEvent<HTMLInputElement>) {
     setTaskContent(event.target.value)
+    event.target.setCustomValidity('')
   }
 
   function handleCreateNewTask(event: FormEvent){
     event.preventDefault()  
-    setTasks([...tasks, taskContent])
-    setTaskContent('')
+
+    const taskAlreadyCreated = tasks.filter(task => {
+      return task == taskContent
+    })
+
+    if(taskAlreadyCreated.length == 0) {
+      setTasks([...tasks, taskContent])
+      setTaskContent('')
+    } else {
+      alert("Essa tarefa ja foi criada!")
+    }
+  }
+
+  function handleCreateNewTaskInvalid(event: InvalidEvent<HTMLInputElement>) {
+    event.target.setCustomValidity('Esse campo e obrigatorio!')
+  }
+
+  function handleDeleteTaks(taskToDelete: string){
+    const tasksWithoutDeletedOne = tasks.filter(task => {
+      return task !== taskToDelete
+    })
+    setTasks(tasksWithoutDeletedOne)
   }
 
   return (
@@ -30,7 +51,15 @@ function App() {
         <form onSubmit={handleCreateNewTask}>
           <div className={styles.inputWrapper}>
             <label htmlFor="search">Adicione uma nova tarefa</label>
-            <input id='search' onChange={inputOnChange} value={taskContent} type="text" placeholder='Adicione uma nova tarefa'/>
+            <input 
+              id='search' 
+              onChange={inputOnChange} 
+              value={taskContent} 
+              type="text"
+              onInvalid={handleCreateNewTaskInvalid}
+              placeholder='Adicione uma nova tarefa'
+              required
+            />
           </div>
 
           <button type='submit'>
@@ -54,7 +83,7 @@ function App() {
 
         <div className={styles.taskList}>
           {tasks.map((task) => {
-            return <Task key={task} content={task} />
+            return <Task key={task} content={task} deleteTask={handleDeleteTaks} />
           })}
         </div>
       </main>
