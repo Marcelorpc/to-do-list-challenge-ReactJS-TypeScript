@@ -39,12 +39,17 @@ function App() {
     event.target.setCustomValidity('Esse campo e obrigatorio!')
   }
 
-  function handleDeleteTaks(taskToDelete: string) {
+  function handleDeleteTaks(taskToDelete: string, isChecked: boolean) {
     const tasksWithoutDeletedOne = tasks.filter(task => {
       return task !== taskToDelete
     })
     setTasks(tasksWithoutDeletedOne)
+
     setNumberOfTasks((state) => state - 1)
+
+    if(isChecked){
+      setNumberOfCompletedTasks((state) => state - 1)
+    }
   }
 
   function handleNumberOfCompletedTasks(checked: boolean) {
