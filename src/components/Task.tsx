@@ -2,9 +2,14 @@ import { Trash } from 'phosphor-react'
 import styles from '../css/Task.module.css'
 
 export interface TaksType {
-  content: string
+  content: string,
+  deleteTask: (taskToDelete: string) => void
 }
-export function Task({content}:TaksType) {
+export function Task({content, deleteTask}:TaksType) {
+  function handleDeleteTask() {
+    deleteTask(content)
+  }
+
   return (
     <div className={styles.task}>
       <div className={styles.inputWrapper}>
@@ -13,7 +18,7 @@ export function Task({content}:TaksType) {
           {content} 
         </label>
       </div>
-      <Trash className={styles.trash} />
+      <Trash className={styles.trash} onClick={handleDeleteTask} />
     </div>
   )
 }
