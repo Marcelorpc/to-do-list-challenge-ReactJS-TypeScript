@@ -19,14 +19,14 @@ function App() {
     event.target.setCustomValidity('')
   }
 
-  function handleCreateNewTask(event: FormEvent){
-    event.preventDefault()  
+  function handleCreateNewTask(event: FormEvent) {
+    event.preventDefault()
 
     const taskAlreadyCreated = tasks.filter(task => {
       return task == taskContent
     })
 
-    if(taskAlreadyCreated.length == 0) {
+    if (taskAlreadyCreated.length == 0) {
       setTasks([...tasks, taskContent])
       setTaskContent('')
       setNumberOfTasks((state) => state + 1)
@@ -39,7 +39,7 @@ function App() {
     event.target.setCustomValidity('Esse campo e obrigatorio!')
   }
 
-  function handleDeleteTaks(taskToDelete: string){
+  function handleDeleteTaks(taskToDelete: string) {
     const tasksWithoutDeletedOne = tasks.filter(task => {
       return task !== taskToDelete
     })
@@ -47,14 +47,14 @@ function App() {
     setNumberOfTasks((state) => state - 1)
   }
 
-  function handleNumberOfCompletedTasks(checked: boolean){
-    if(checked){
+  function handleNumberOfCompletedTasks(checked: boolean) {
+    if (checked) {
       setNumberOfCompletedTasks((state) => state + 1)
     } else {
       setNumberOfCompletedTasks((state) => state - 1)
     }
   }
-  
+  console.log(tasks.length)
   return (
     <div className={styles.app}>
       <header>
@@ -63,10 +63,10 @@ function App() {
         <form onSubmit={handleCreateNewTask}>
           <div className={styles.inputWrapper}>
             <label htmlFor="search">Adicione uma nova tarefa</label>
-            <input 
-              id='search' 
-              onChange={inputOnChange} 
-              value={taskContent} 
+            <input
+              id='search'
+              onChange={inputOnChange}
+              value={taskContent}
               type="text"
               onInvalid={handleCreateNewTaskInvalid}
               placeholder='Adicione uma nova tarefa'
@@ -76,7 +76,7 @@ function App() {
 
           <button type='submit'>
             Criar
-            <PlusCircle size={20}/>
+            <PlusCircle size={20} />
           </button>
         </form>
       </header>
@@ -87,22 +87,24 @@ function App() {
           <strong>Concluídas<span>{numberOfCompletedTasks}</span></strong>
         </div>
 
-        <div className={styles.screenEmptyContent}>
-          <Clipboard size={56} className={styles.clipboard}/>
-          <strong>Você ainda não tem tarefas cadastradas</strong>
-          <p>Crie tarefas e organize seus itens a fazer</p>
-        </div>
-
-        <div className={styles.taskList}>
-          {tasks.map((task) => {
-            return <Task 
-                      key={task} 
-                      content={task} 
-                      deleteTask={handleDeleteTaks}
-                      handleNumberOfCompletedTasks={handleNumberOfCompletedTasks}
-                    />
-          })}
-        </div>
+        {tasks.length === 0 ? (
+          <div className={styles.screenEmptyContent}>
+            <Clipboard size={56} className={styles.clipboard} />
+            <strong>Você ainda não tem tarefas cadastradas</strong>
+            <p>Crie tarefas e organize seus itens a fazer</p>
+          </div>
+        ) : (
+          <div className={styles.taskList}>
+            {tasks.map((task) => {
+              return <Task
+                key={task}
+                content={task}
+                deleteTask={handleDeleteTaks}
+                handleNumberOfCompletedTasks={handleNumberOfCompletedTasks}
+              />
+            })}
+          </div>
+        )}
       </main>
     </div>
   )
