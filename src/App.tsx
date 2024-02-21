@@ -6,9 +6,11 @@ import { Task } from './components/Task'
 import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react'
 
 function App() {
-  const [tasks, setTasks] = useState([
-    'Integer urna interdum massa libero auctor neque turpis turpis semper.'
-  ])
+  const [tasks, setTasks] = useState<string[]>([])
+
+  const [numberOfTasks, setNumberOfTasks] = useState(0)
+
+  const [numberOfCompletedTasks, setNumberOfCompletedTasks] = useState(0)
 
   const [taskContent, setTaskContent] = useState('')
 
@@ -27,6 +29,7 @@ function App() {
     if(taskAlreadyCreated.length == 0) {
       setTasks([...tasks, taskContent])
       setTaskContent('')
+      setNumberOfTasks((state) => state + 1)
     } else {
       alert("Essa tarefa ja foi criada!")
     }
@@ -41,8 +44,17 @@ function App() {
       return task !== taskToDelete
     })
     setTasks(tasksWithoutDeletedOne)
+    setNumberOfTasks((state) => state - 1)
   }
 
+  function handleNumberOfCompletedTasks(checked: boolean){
+    if(checked){
+      setNumberOfCompletedTasks((state) => state + 1)
+    } else {
+      setNumberOfCompletedTasks((state) => state - 1)
+    }
+  }
+  
   return (
     <div className={styles.app}>
       <header>
@@ -71,8 +83,8 @@ function App() {
 
       <main>
         <div className={styles.taskListHeader}>
-          <strong>Tarefas criadas<span>0</span></strong>
-          <strong>Concluídas<span>0</span></strong>
+          <strong>Tarefas criadas<span>{numberOfTasks}</span></strong>
+          <strong>Concluídas<span>{numberOfCompletedTasks}</span></strong>
         </div>
 
         <div className={styles.screenEmptyContent}>
@@ -83,7 +95,12 @@ function App() {
 
         <div className={styles.taskList}>
           {tasks.map((task) => {
-            return <Task key={task} content={task} deleteTask={handleDeleteTaks} />
+            return <Task 
+                      key={task} 
+                      content={task} 
+                      deleteTask={handleDeleteTaks}
+                      handleNumberOfCompletedTasks={handleNumberOfCompletedTasks}
+                    />
           })}
         </div>
       </main>
