@@ -54,7 +54,7 @@ function App() {
       setNumberOfCompletedTasks((state) => state - 1)
     }
   }
-  console.log(tasks.length)
+
   return (
     <div className={styles.app}>
       <header>
